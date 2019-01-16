@@ -1,0 +1,7 @@
+{
+  "name": "loginflow-post-notes",
+  "dependencies": {
+    "@architect/functions": "^1.11.1",
+    "hashids": "^1.2.2"
+  }
+}

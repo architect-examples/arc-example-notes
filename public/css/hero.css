@@ -1,0 +1,15 @@
+
+section.hero {
+    height: calc(100vh - var(--nav-height));
+    padding: 24px;	
+}
+
+section.hero h1 {
+    font-size: 48pt;
+    line-height: 56pt;
+}
+
+section.hero h2 {
+    font-size: 24pt;
+    line-height: 36pt;
+}

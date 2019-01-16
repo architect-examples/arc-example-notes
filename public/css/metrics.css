@@ -1,0 +1,5 @@
+:root {
+	--spacing: 12px;
+	--nav-height: 12vh;
+	--single-column-threshold-width: 850px;
+}

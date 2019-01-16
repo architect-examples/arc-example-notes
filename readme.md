@@ -1,19 +1,21 @@
-# arc-example-login-flow
+# arc-example-notes
 
-Example of `.arc` defined HTTP functions for `Content-Type: text/html`.
+A demo note taking app with support for multiple users.
 
-Demonstrates:
+## Features demonstrated:
 
-- `200` with an html payload
-- `302` Location redirects
-- middleware pattern
-- `arc.http.helpers.url`
-- session storage
-
+- [HTTP](https://arc.codes/guides/http) GETs and POSTs with different response codes
+- [Sessions](https://arc.codes/guides/sessions) and related work like including sign up, log in, authenticating access to lambda routes, etc.
+- [Data storage](https://arc.codes/guides/data)
+- [Middleware](https://arc.codes/reference/middleware), including using middleware to control access to a route lambda.
+- The [`shared` directory](https://arc.codes/guides/sharing-common-code), with carefully selected features like auth and response codes available to all our lambdas.
+- [Helpers](https://arc.codes/reference/http-helpers) like `url` - ensures we map to the correct sandbox / testing / production URLs (before DNS is set up) 
 
 ## Usage
 
     npm i
     npx sandbox
 
-Then visit the URL presented and use 'admin@example.com' and 'admin' as the email and password.
+Then visit the URL presented.
+
+

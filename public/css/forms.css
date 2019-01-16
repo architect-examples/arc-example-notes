@@ -1,0 +1,112 @@
+form {
+	width: 100%;
+	max-width: var(--single-column-threshold-width);
+	padding: 12px;
+}
+
+/* Creates cool label-moves-when-active effect 
+See https://jonathan-harrell.com/advanced-css-form-styling/ */
+.input-and-label {
+	position: relative;
+}
+
+.input-and-label, button {
+	margin-bottom:  var(--spacing);
+}
+
+input, textarea {
+	font-size: 14pt;
+	line-height: 16pt;
+	color: var(--textcolor);
+	border: 1px solid var(--midgrey);
+	background-color: white;
+	border-radius: 3px;
+	/* Space for label */
+	padding: 18px var(--spacing) 6px var(--spacing);
+}
+
+
+textarea {
+    font-family: sans-serif;
+    min-height: 100px;
+}
+
+/* Don't show label when placeholder is shown */
+input:placeholder-shown + label, 
+textarea:placeholder-shown + label {
+	opacity: 0;
+}
+
+input:placeholder-shown {
+	/* No space for label since we just hid it, and we have the placeholder */
+	padding: var(--spacing);
+}
+
+input:focus {
+	border: 2px solid var(--brandcolor);
+}
+
+label {
+	position: absolute;
+	top: 0;
+	font-size: 8pt;
+	font-weight: 600;
+	padding: 12px;
+	opacity: 1;
+	transition: all 0.2s ease-out;
+	transform: translateY(-12px);
+}
+
+button, a.button,
+a.button:hover,
+a.button:active,
+a.button:visited {
+	background-color: var(--brandcolor);
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	color: white;
+	padding: 12px 48px;
+	font-size: 14pt;
+	box-shadow: var(--shadow);
+	transition: all 0.2s;
+}
+
+button.subtle, a.button.subtle,
+a.button.subtle:hover,
+a.button.subtle:active,
+a.button.subtle:visited {
+	background-color: transparent;
+	border: 1px solid var(--brandcolor);
+	color: var(--brandcolor);
+}
+
+button.danger, a.button.danger,
+a.button.danger:hover,
+a.button.danger:active,
+a.button.danger:visited {
+	background-color: var(--errorcolor);
+	color: white;
+}
+
+.input-and-label.checkbox {
+	display: grid;
+  	justify-items: left;
+ 	grid-template-columns: 18px auto;
+}
+
+input[type='checkbox'] {
+	margin: 10px 0 12px 0;
+}
+
+.input-and-label.checkbox label {
+	position: relative;
+	transform: none;
+	text-align: left;
+	padding: 6px 0;
+}
+
+
+button:hover, a.button {
+	transform: scale(1.05);
+}

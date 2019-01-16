@@ -1,0 +1,46 @@
+:root {
+    --card-height: 300px;
+    --card-width: 300px;
+}
+
+section.cards {
+    width: 100%;
+    display: grid;
+    grid-gap: 12px;
+    padding: 0 12px;
+    grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
+}
+
+section.cards * {
+    grid-column: auto;
+}
+
+section.card {
+    align-content: start;
+    border: 1px solid var(--midgrey);
+    padding: 24px;
+    width: 100%;
+    border-radius: 8px; 
+    display: grid;
+    grid-gap: 12px;
+    height: var(--card-height);
+}
+
+section.card * {
+    text-align: left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+section.card heading {
+    line-height: 28pt;
+    font-size:18pt;
+}
+
+section.card p {
+    line-height: 24pt;
+    font-size: 14pt;
+    color: var(--textcolor);
+    font-weight: 400;
+}

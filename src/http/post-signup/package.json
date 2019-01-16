@@ -1,0 +1,8 @@
+{
+    "name": "loginflow-post-signup",
+    "dependencies": {
+      "@architect/data": "^2.0.8",
+      "@architect/functions": "^1.11.1"
+    }
+  }
+  

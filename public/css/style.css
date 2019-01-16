@@ -1,0 +1,131 @@
+@import url("/css/colors.css");
+@import url("/css/metrics.css");
+@import url("/css/forms.css");
+@import url("/css/fonts.css");
+@import url("/css/nav.css");
+@import url("/css/hero.css");
+@import url("/css/cards.css");
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+img.logo {
+    height: 36px;
+}
+
+nav, header, article, section, div {
+	display: grid;
+}
+
+article {
+	padding: 12px;
+	margin: 0 auto;
+	width: 100%;
+	max-width: var(--single-column-threshold-width);
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-family);
+	font-size: 14pt;
+	line-height: 16pt;
+	background-color: var(--background-color);
+	color: var(--textcolor);
+	/* Always fill the page even if content is tiny (like the login box) */
+	min-height: 100vh;
+	width: 100%;
+}
+
+body.dark a,
+body.dark a:hover,
+body.dark a:active,
+body.dark a:visited {
+	color: var(--white);
+}
+
+body.login-page, body.signup-page {
+	display: grid;
+}
+
+a,
+a:hover,
+a:active,
+a:visited {
+	color: var(--linkcolor);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+strong {
+	font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 100;
+}
+
+h2 {
+    font-size: 24pt;
+    line-height: 32pt;
+}
+
+body.login-page, body.signup-page {
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	background-color: var(--brandcolor-dark);
+	overflow: hidden;
+}
+
+form.login, form.signup {
+	max-width: 100%;
+	width: 500px;
+	padding: calc(var(--spacing) * 4) var(--spacing);
+	background-color: var(--white);
+	height: 500px;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	box-shadow: var(--shadow);
+	border-radius: 3px;
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.flash-message {
+	animation: 10s linear 1s fade-out forwards;
+	padding: 12px;
+    margin: 12px 0;
+    color: var(--white);
+    background-color:var(--darkgrey);
+}
+
+.flash-message.no-messages {
+	display: none;
+}
+
+section {
+    align-content: center;
+}
+
+section > * {
+	grid-column: 1;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+}

@@ -1,0 +1,21 @@
+:root {
+	--white: #fcfcfc;
+	--lightgrey: #b7b7b7;
+	--midgrey: #777777;
+	--midblue: rgb(34, 113, 182);
+	--darkgrey: #222;
+	--scaryred: #b90f00;
+	--shadedgrey: rgba(0, 0, 0, 0.7);
+
+	--brandcolor: #277493;
+	--brandcolor-dark: #08212b;
+
+	--shadow-below: 0 .125rem .25rem rgba(0,0,0,.075);
+
+	--textcolor: var(--darkgrey);
+	--linkcolor: var(--midblue);
+	--background-color: var(--white);
+
+	--lightcolor: var(--lightgrey);
+	--errorcolor: var(--scaryred);
+}
