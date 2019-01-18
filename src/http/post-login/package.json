@@ -1,5 +1,5 @@
 {
-  "name": "loginflow-post-login",
+  "name": "notes-post-login",
   "dependencies": {
     "@architect/data": "^2.0.8",
     "@architect/functions": "^1.11.1"

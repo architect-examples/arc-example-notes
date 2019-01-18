@@ -1,8 +1,7 @@
 {
-    "name": "loginflow-get-signup",
-    "dependencies": {
-      "@architect/data": "^2.0.8",
-      "@architect/functions": "^1.11.1"
-    }
+  "name": "notes-get-signup",
+  "dependencies": {
+    "@architect/data": "^2.0.8",
+    "@architect/functions": "^1.11.1"
   }
-  
+}
