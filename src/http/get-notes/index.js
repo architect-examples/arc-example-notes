@@ -2,12 +2,13 @@ let arc = require('@architect/functions'),
   layout = require('@architect/shared/layout'),
   requireLogin = require('@architect/shared/require-login'),
   getNotes = require('./get-notes.js'),
+  log = console.log.bind(console),
   url = arc.http.helpers.url
 
 require('@architect/shared/globals')
 
 async function showProtectedPage(request) {
-  console.log(`Showing dashboard`)
+  log(`Showing dashboard`)
   let state = await arc.http.session.read(request)
 
   var notes = await getNotes(state.person.email)

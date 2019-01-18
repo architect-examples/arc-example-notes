@@ -1,5 +1,5 @@
 @app
-loginflow
+arc-example-notes
 
 @http
 get /

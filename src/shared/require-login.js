@@ -1,5 +1,6 @@
-let arc = require('@architect/functions')
-let url = arc.http.helpers.url
+let arc = require('@architect/functions'),
+  log = console.log.bind(console),
+  url = arc.http.helpers.url
 
 require('@architect/shared/globals')
 
