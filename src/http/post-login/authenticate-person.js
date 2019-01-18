@@ -2,9 +2,7 @@ let data = require('@architect/data'),
   bcrypt = require('bcrypt'),
   log = console.log.bind(console)
 
-const SALT_ROUNDS = 12
-
-async function authenticatePerson(email, suppliedPassword) {
+module.exports = async function authenticatePerson(email, suppliedPassword) {
   let result = await data.people.query({
     KeyConditionExpression: 'email = :email',
     ExpressionAttributeValues: {
@@ -26,5 +24,3 @@ async function authenticatePerson(email, suppliedPassword) {
   log(`Failed login attempt as ${email}`)
   return null
 }
-
-module.exports = authenticatePerson

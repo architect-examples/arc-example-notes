@@ -1,7 +1,7 @@
-let arc = require('@architect/functions')
-let layout = require('@architect/shared/layout')
-let url = arc.http.helpers.url
-let logo = arc.http.helpers.static('images/logo.svg')
+let arc = require('@architect/functions'),
+  layout = require('@architect/shared/layout'),
+  url = arc.http.helpers.url,
+  logo = arc.http.helpers.static('images/logo.svg')
 
 require('@architect/shared/globals')
 

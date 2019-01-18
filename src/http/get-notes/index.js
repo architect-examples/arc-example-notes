@@ -8,7 +8,7 @@ let arc = require('@architect/functions'),
 require('@architect/shared/globals')
 
 async function showProtectedPage(request) {
-  log(`Showing dashboard`)
+  log(`Showing notes`)
   let state = await arc.http.session.read(request)
 
   var notes = await getNotes(state.person.email)
