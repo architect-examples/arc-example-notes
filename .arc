@@ -1,5 +1,5 @@
 @app
-arc-example-notes
+notes
 
 @http
 get /
