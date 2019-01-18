@@ -23,5 +23,8 @@
     "bracketSpacing": false,
     "endOfLine": "lf",
     "printWidth": 1000
+  },
+  "scripts": {
+    "develop": "npx nodemon --watch src/shared/,.arc -e md,css,js --exec npx sandbox"
   }
 }
