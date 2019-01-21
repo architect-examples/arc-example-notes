@@ -22,3 +22,8 @@ people
 notes
   email *String
   noteID **String
+
+# You'll need to rename these to something unique - see README
+@static
+staging arc-example-notes-staging
+production arc-example-notes-production

@@ -13,6 +13,8 @@ A demo note taking app with support for multiple users.
 
 ## Usage
 
+Open the .arc and modify the @static bucket names from 'arc-example-notes-staging' and 'arc-example-notes-production' to something else - [S3 buckets are global to AWS](https://arc.codes/reference/static)
+
     npm i
     npx sandbox
 
