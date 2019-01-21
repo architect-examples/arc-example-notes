@@ -1,5 +1,4 @@
 let arc = require('@architect/functions'),
-  stylesheet = arc.http.helpers.static('/css/style.css'),
   url = arc.http.helpers.url,
   static = arc.http.helpers.static
 
@@ -29,7 +28,10 @@ module.exports = function layout(contents, showNav = true, isLoggedIn = true) {
 	<html>
 	<head>
 		<title>Architect demo app</title>
-		<link rel=stylesheet href="${stylesheet}">
+		<link rel=stylesheet href="${static('/css/style.css')}">
+		<link rel="icon" type="image/png" sizes="16x16" href="${static('/images/architect-favicon-16.png')}">
+		<link rel="icon" type="image/png" sizes="32x32" href="${static('/images/architect-favicon-32.png')}">
+		<link rel="icon" type="image/png" sizes="64x64" href="${static('/images/architect-favicon-64.png')}">
 	</head>
 	<body>	
 		${nav}
