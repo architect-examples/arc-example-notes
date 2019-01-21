@@ -8,9 +8,9 @@
     "url": "https://github.com/arc-repos/arc-example-login-flow"
   },
   "dependencies": {
-    "@architect/architect": "^4.5.2",
-    "@architect/data": "2.0.11",
-    "@architect/functions": "1.11.2",
+    "@architect/architect": "^4.5.6",
+    "@architect/data": "^2.0.9",
+    "@architect/functions": "^1.12.1",
     "bcrypt": "^3.0.3",
     "hashids": "^1.2.2"
   },

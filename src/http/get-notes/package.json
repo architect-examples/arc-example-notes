@@ -1,7 +1,7 @@
 {
   "name": "notes-get-notes",
   "dependencies": {
-    "@architect/data": "^2.0.8",
-    "@architect/functions": "^1.11.1"
+    "@architect/data": "^2.0.9",
+    "@architect/functions": "^1.12.1"
   }
 }
