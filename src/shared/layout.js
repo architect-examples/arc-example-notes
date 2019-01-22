@@ -5,12 +5,12 @@ let arc = require('@architect/functions'),
 module.exports = function layout(contents, showNav = true, isLoggedIn = true) {
   var nav = ''
 
-  var loginLinks = `
+  var navLinks = `
 		<a class="button subtle" href="${url('/login')}">Log in</a>
 		<a class="button" href="${url('/signup')}">Sign up</a>
 	`
   if (isLoggedIn) {
-    loginLinks = `
+    navLinks = `
 			<a class="button subtle" href="${url('/logout')}">Log out</a>
 		`
   }
@@ -18,9 +18,11 @@ module.exports = function layout(contents, showNav = true, isLoggedIn = true) {
   if (showNav) {
     nav = `
 			<nav>
-				<a href="/"><img class="logo" src="${static('/images/logo.svg')}"/></a>
+				<a href="/">
+					<img class="logo" src="${static('/images/logo.svg')}"/>
+				</a>
 				<a href="https://arc.codes" target="_blank">Documentation</a>
-				${loginLinks}
+				${navLinks}
 			</nav>`
   }
 
