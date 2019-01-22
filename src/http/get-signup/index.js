@@ -1,7 +1,7 @@
 let arc = require('@architect/functions'),
   layout = require('@architect/shared/layout'),
   url = arc.http.helpers.url,
-  logo = arc.http.helpers.static('images/logo.svg')
+  static = arc.http.helpers.static
 
 require('@architect/shared/globals')
 
@@ -20,7 +20,7 @@ exports.handler = async function http(req) {
     <body class="signup-page dark">
       <form class="signup" method="post" action=${url('/signup')}>
       
-        <a href="/"><img class="logo" src="${logo}"/></a>
+        <a href="/"><img class="logo" src="${static('/images/logo.svg')}"/></a>
         <h2>Sign up</h2>
         
         <p>Enter an email and password to sign up</p>

@@ -1,7 +1,7 @@
 let arc = require('@architect/functions'),
   layout = require('@architect/shared/layout'),
   url = arc.http.helpers.url,
-  logo = arc.http.helpers.static('images/logo.svg')
+  static = arc.http.helpers.static
 
 require('@architect/shared/globals')
 
@@ -26,14 +26,14 @@ exports.handler = async function http(req) {
     <body class="signup-page dark">
       <form class="login" method="post" action=${url('/login')} >
       
-        <a href="/"><img class="logo" src="${logo}"/></a>
+        <a href="/"><img class="logo" src="${static('/images/logo.svg')}"/></a>
 
         <h2>Please log in below!</h2>	
 
         <div class="flash-message ${message ? '' : 'no-messages'}">${message || ''}</div>
     
         <div class="input-and-label">
-          <input name="email" required="required" type="email" autocomplete="off" value="${state.attemptedEmail}" placeholder="Email address" autofocus/>
+          <input name="email" required="required" type="email" autocomplete="off" value="${state.attemptedEmail || ''}" placeholder="Email address" autofocus/>
           <label for="email">Email address</label>
         </div>
     
