@@ -1,10 +1,10 @@
-@import url("/css/colors.css");
-@import url("/css/metrics.css");
-@import url("/css/forms.css");
-@import url("/css/fonts.css");
-@import url("/css/nav.css");
-@import url("/css/hero.css");
-@import url("/css/cards.css");
+@import url("colors.css");
+@import url("metrics.css");
+@import url("forms.css");
+@import url("fonts.css");
+@import url("nav.css");
+@import url("hero.css");
+@import url("cards.css");
 
 *,
 *:before,
