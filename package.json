@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@architect/architect": "^4.5.6",
-    "@architect/data": "^2.0.9",
-    "@architect/functions": "^1.12.1",
+    "@architect/data": "^2.1.0",
+    "@architect/functions": "^1.13.7",
     "bcrypt": "^3.0.3",
     "hashids": "^1.2.2"
   },
@@ -25,6 +25,7 @@
     "printWidth": 1000
   },
   "scripts": {
-    "develop": "npx nodemon --watch src/shared/,.arc -e md,css,js --exec npx sandbox"
+    "develop": "npx nodemon --watch src/shared/,.arc -e md,css,js --exec npx sandbox",
+    "start": "npx sandbox"
   }
 }
