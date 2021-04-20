@@ -1,30 +1,15 @@
-let arc = require('@architect/functions'),
-  data = require('@architect/data'),
-  url = arc.http.helpers.url,
-  requireLogin = require('@architect/shared/require-login'),
-  log = console.log.bind(console)
+let arc = require('@architect/functions')
+let requireLogin = require('@architect/shared/require-login')
 
-let deleteNote = async function route(request) {
-  let noteID = request.params.noteID
-  let session = await arc.http.session.read(request)
-  let email = session.person && session.person.email
-  log(
-    `Deleting notes matching ${JSON.stringify(
-      {
-        noteID,
-        email
-      },
-      null,
-      2
-    )}`
-  )
+exports.handler = arc.http.async(requireLogin, deleteNote)
+
+async function deleteNote (req) {
+  let data = await arc.tables()
   await data.notes.delete({
-    noteID,
-    email
+    noteID: req.params.noteID,
+    email: req.session.person.email
   })
   return {
-    status: MOVED_TEMPORARILY,
-    location: url('/notes')
+    location: '/notes'
   }
 }
-exports.handler = arc.middleware(requireLogin, deleteNote)

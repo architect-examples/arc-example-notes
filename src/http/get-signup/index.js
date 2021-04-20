@@ -1,26 +1,22 @@
-let arc = require('@architect/functions'),
-  layout = require('@architect/shared/layout'),
-  url = arc.http.helpers.url,
-  static = arc.http.helpers.static
+let arc = require('@architect/functions')
+let layout = require('@architect/shared/layout')
 
-require('@architect/shared/globals')
+exports.handler = arc.http.async(signup)
 
-exports.handler = async function http(req) {
-  let state = await arc.http.session.read(req)
+async function signup (req) {
 
-  if (state.person) {
-    // You're already logged in
+  // You're already logged in
+  if (req.session.person) {
     return {
-      status: MOVED_TEMPORARILY,
-      location: url('/notes')
+      location: '/notes'
     }
   }
 
   var signupPage = `
     <body class="signup-page dark">
-      <form class="signup" method="post" action=${url('/signup')}>
+      <form class="signup" method="post" action=/signup>
       
-        <a href="/"><img class="logo" src="${static('/images/logo.svg')}"/></a>
+        <a href="/"><img class="logo" src=/_static/images/logo.svg /></a>
         <h2>Sign up</h2>
         
         <p>Enter an email and password to sign up</p>
@@ -44,13 +40,11 @@ exports.handler = async function http(req) {
     
       </form>
 
-      <a href="${url('/login')}">Log in</a>
+      <a href=/login>Log in</a>
     </body>
   `
 
   return {
-    type: HTML,
-    status: OK,
-    body: layout(signupPage, false)
+    html: layout({contents: signupPage, showNav: false })
   }
 }

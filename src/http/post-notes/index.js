@@ -1,27 +1,20 @@
-let arc = require('@architect/functions'),
-  makeNote = require('./make-note.js'),
-  requireLogin = require('@architect/shared/require-login'),
-  url = arc.http.helpers.url
+let arc = require('@architect/functions')
+let requireLogin = require('@architect/shared/require-login')
+let save = require('./save')
 
-require('@architect/shared/globals')
+exports.handler = arc.http.async(requireLogin, create)
 
-async function route(request) {
-  try {
-    let session = await arc.http.session.read(request)
+async function create (req) {
 
-    // create the partition and sort keys
-    let email = session.person.email
-    // save the note
-    let result = await makeNote(email, request.body.title, request.body.body)
-    // log it to stdout
-    console.log(result)
-  } catch (error) {
-    console.log(error)
-  }
+  // create the partition and sort keys
+  let email = req.session.person.email
+  let title = req.body.title
+  let body = req.body.body
+
+  // save the note
+  await save({email, title, body})
+
   return {
-    status: MOVED_TEMPORARILY,
-    location: url('/notes')
+    location: '/notes'
   }
 }
-
-exports.handler = arc.middleware(requireLogin, route)

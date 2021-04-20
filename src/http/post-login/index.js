@@ -1,24 +1,21 @@
-let arc = require('@architect/functions'),
-  authenticatePerson = require('./authenticate-person.js'),
-  url = arc.http.helpers.url
+let arc = require('@architect/functions')
+let verify = require('./verify-password')
 
-require('@architect/shared/globals')
+exports.handler = arc.http.async(login)
 
-exports.handler = async function http(request) {
-  let session = await arc.http.session.read(request)
+async function login (req) {
 
-  let person = await authenticatePerson(request.body.email, request.body.password)
+  let session = {}
+  let person = await verify(req.body.email, req.body.password)
+  if (!person) {
+    session.attemptedEmail = req.body.email
+  }
+  else {
+    session.person = person
+  }
 
-  const location = person ? url('/notes') : url('/login')
-
-  session.attemptedEmail = person ? null : request.body.email
-
-  session.person = person
-
-  let cookie = await arc.http.session.write(session)
   return {
-    cookie,
-    status: MOVED_TEMPORARILY,
-    location
+    session,
+    location: person? '/notes' : '/login'
   }
 }

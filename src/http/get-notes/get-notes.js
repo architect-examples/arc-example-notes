@@ -1,16 +1,12 @@
-let data = require('@architect/data'),
-  log = console.log.bind(console)
+let arc = require('@architect/functions')
 
 module.exports = async function getNotes(email) {
+  let data = await arc.tables()
   let result = await data.notes.query({
     KeyConditionExpression: 'email = :email',
     ExpressionAttributeValues: {
       ':email': email
     }
   })
-
-  log(`Searching for notes for "${email}". Found ${result.Count} results`)
-
-  var notes = result.Items
-  return notes
+  return result.Items
 }

@@ -1,58 +1,47 @@
-let arc = require('@architect/functions'),
-  layout = require('@architect/shared/layout'),
-  requireLogin = require('@architect/shared/require-login'),
-  data = require('@architect/data'),
-  url = arc.http.helpers.url
+let arc = require('@architect/functions')
+let layout = require('@architect/shared/layout')
+let requireLogin = require('@architect/shared/require-login')
 
-require('@architect/shared/globals')
+exports.handler = arc.http.async(requireLogin, showNote)
 
-async function showNote(request) {
-  let noteID = request.params.noteID
+// display a note
+async function showNote (req) {
 
-  let session = await arc.http.session.read(request)
-
-  let email = session.person && session.person.email
-
+  let noteID = req.params.noteID
+  let email = req.session.person && req.session.person.email
+  let data = await arc.tables()
   let note = await data.notes.get({noteID, email})
-  note.noteURL = url(`/notes/${noteID}`)
 
-  let showNote = function(note) {
-    return `
-      <article>
-        <h2>Edit note</h2>
-        <form action=${note.noteURL} method=post>
-            <input type=hidden name=noteID value=${noteID}>
-          <div class="input-and-label">
-            <input 
-            type=text 
-            name=title 
-            placeholder="Enter title" 
-            value="${note.title}"
-            required>
-          </div>
-          <div class="input-and-label">
-            <textarea 
-            class=form-control 
-            name=body 
-            placeholder="Enter text">${note.body}
-            </textarea>
-          </div>
-          <button type=submit>Save changes</button>
-        </form>
+  let html = `
+    <article>
+      <h2>Edit note</h2>
+      <form action=/notes/${noteID} method=post>
+        <input type=hidden name=noteID value=${noteID}>
+        <div class="input-and-label">
+          <input 
+          type=text 
+          name=title 
+          placeholder="Enter title" 
+          value="${note.title}"
+          required>
+        </div>
+        <div class="input-and-label">
+          <textarea 
+          class=form-control 
+          name=body 
+          placeholder="Enter text">${note.body}
+          </textarea>
+        </div>
+        <button type=submit>Save changes</button>
+      </form>
 
-        <form action="${note.noteURL}/delete" method=post>
-          <button class="danger" type=submit>Delete</button>
-        </form>
-
-      </article>
-    `
-  }
+      <form action=/notes/${noteID}/delete method=post>
+        <button class="danger" type=submit>Delete</button>
+      </form>
+    </article>
+  `
 
   return {
-    status: OK,
-    body: layout(showNote(note)),
-    type: HTML
+    html: layout({contents: html})
   }
 }
-
-exports.handler = arc.middleware(requireLogin, showNote)

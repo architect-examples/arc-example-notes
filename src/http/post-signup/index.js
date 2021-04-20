@@ -1,18 +1,12 @@
-let arc = require('@architect/functions'),
-  makePerson = require('./make-person.js'),
-  log = console.log.bind(console),
-  url = arc.http.helpers.url
+let arc = require('@architect/functions')
+let create = require('./create-person')
 
-require('@architect/shared/globals')
+exports.handler = arc.http.async(signup)
 
-exports.handler = async function http(request) {
-  let session = await arc.http.session.read(request)
-  let person = await makePerson(request.body.email, request.body.password)
-  session.person = person
-  let cookie = await arc.http.session.write(session)
+async function signup (req) {
+  let person = await create(req.body.email, req.body.password)
   return {
-    cookie,
-    status: MOVED_TEMPORARILY,
-    location: url('/notes')
+    session: { person },
+    location: '/notes'
   }
 }

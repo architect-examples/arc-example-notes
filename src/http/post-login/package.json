@@ -1,7 +1,0 @@
-{
-  "name": "notes-post-login",
-  "dependencies": {
-    "@architect/data": "^2.0.9",
-    "@architect/functions": "^1.12.1"
-  }
-}

@@ -1,17 +1,16 @@
-let arc = require('@architect/functions'),
-  url = arc.http.helpers.url,
-  static = arc.http.helpers.static
+let arc = require('@architect/functions')
+let static = arc.http.helpers.static
 
-module.exports = function layout(contents, showNav = true, isLoggedIn = true) {
+module.exports = function layout ({ contents, showNav=true, isLoggedIn=true }) {
   var nav = ''
 
   var navLinks = `
-		<a class="button subtle" href="${url('/login')}">Log in</a>
-		<a class="button" href="${url('/signup')}">Sign up</a>
+		<a class="button subtle" href=/login>Log in</a>
+		<a class="button" href=/signup>Sign up</a>
 	`
   if (isLoggedIn) {
     navLinks = `
-			<a class="button subtle" href="${url('/logout')}">Log out</a>
+			<a class="button subtle" href=/logout>Log out</a>
 		`
   }
 

@@ -1,29 +1,25 @@
-let arc = require('@architect/functions'),
-  layout = require('@architect/shared/layout'),
-  requireLogin = require('@architect/shared/require-login'),
-  getNotes = require('./get-notes.js'),
-  log = console.log.bind(console),
-  url = arc.http.helpers.url
+let arc = require('@architect/functions')
+let layout = require('@architect/shared/layout')
+let requireLogin = require('@architect/shared/require-login')
+let getNotes = require('./get-notes.js')
 
-require('@architect/shared/globals')
+exports.handler = arc.http.async(requireLogin, showProtectedPage)
 
-async function showProtectedPage(request) {
-  log(`Showing notes`)
-  let state = await arc.http.session.read(request)
+// display all notes
+async function showProtectedPage (req) {
 
-  var notes = await getNotes(state.person.email)
+  let person = req.session.person
+  let notes = await getNotes(person.email)
 
-  var greeting = `You don't have any notes! Make some below`
+  let greeting = `You don't have any notes! Make some below`
   if (notes.length) {
     greeting = `You have <strong>${notes.length}</strong> notes.`
   }
 
-  var existingNotes = ``
-  notes.forEach(function(note) {
-    var noteURL = url(`/notes/${note.noteID}`)
-    existingNotes += `
+  let list = notes.map(note=> {
+    return `
       <section class="card">
-        <a href="${noteURL}">        
+        <a href=/notes/${note.noteID}>        
           <heading>
             ${note.title}
           </heading>        
@@ -34,16 +30,12 @@ async function showProtectedPage(request) {
 
   var contents = `
     <section>
-      <h2>Welcome to the Notes page <strong>${state.person.email}</strong>!</h2>
+      <h2>Welcome to the Notes page <strong>${person.email}</strong>!</h2>
       <p>${greeting}</p>
-
       <section class="cards">
-
-        ${existingNotes}
+        ${list.join('')}
       </section>
-
-      
-      <form action=${url('/notes')} method=post>
+      <form action=/notes method=post>
         <h2>Make a note</h2>
         <div class="input-and-label">
           <input name="title" required="required" type="text" autocomplete="off" value="" placeholder="Title" autofocus/>
@@ -56,14 +48,10 @@ async function showProtectedPage(request) {
         <button>Make a note</button>
       </form>
     </section>
-    
   `
 
   return {
-    status: OK,
-    body: layout(contents, true, true),
-    type: HTML
+    html: layout({ contents }),
   }
 }
 
-exports.handler = arc.middleware(requireLogin, showProtectedPage)

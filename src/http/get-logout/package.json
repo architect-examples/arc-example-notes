@@ -1,7 +1,0 @@
-{
-  "name": "notes-get-logout",
-  "dependencies": {
-    "@architect/data": "^2.0.9",
-    "@architect/functions": "^1.12.1"
-  }
-}

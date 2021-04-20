@@ -1,39 +1,34 @@
-let arc = require('@architect/functions'),
-  layout = require('@architect/shared/layout'),
-  url = arc.http.helpers.url,
-  static = arc.http.helpers.static
+let arc = require('@architect/functions')
+let layout = require('@architect/shared/layout')
 
-require('@architect/shared/globals')
+exports.handler = arc.http.async(login)
 
-exports.handler = async function http(req) {
-  let state = await arc.http.session.read(req)
+// show the login page
+async function login (req) {
 
-  var message = null
-  if (state.attemptedEmail) {
-    message = `Could not log in as ${state.attemptedEmail}`
-  }
+  let flash = req.session.attemptedEmail? `Could not log in as ${req.session.attemptedEmail}` : false
 
-  var loggedInPage = `
+  let loggedInPage = `
     <body>
       <h2>You're already logged in!</h2>
         <p>
-        <a href=${url('/notes')}>notes</a>
-        <a href=${url('/logout')}>logout</a>
+        <a href=/notes>notes</a>
+        <a href=/logout>logout</a>
       </p>
     </body>`
 
-  var notLoggedInPage = `
+  let notLoggedInPage = `
     <body class="signup-page dark">
-      <form class="login" method="post" action=${url('/login')} >
+      <form class="login" method="post" action=/login>
       
-        <a href="/"><img class="logo" src="${static('/images/logo.svg')}"/></a>
+        <a href="/"><img class="logo" src=/_static/images/logo.svg></a>
 
         <h2>Please log in below!</h2>	
 
-        <div class="flash-message ${message ? '' : 'no-messages'}">${message || ''}</div>
+        <div class="flash-message ${flash? '' : 'no-messages'}">${flash || ''}</div>
     
         <div class="input-and-label">
-          <input name="email" required="required" type="email" autocomplete="off" value="${state.attemptedEmail || ''}" placeholder="Email address" autofocus/>
+          <input name="email" required="required" type="email" autocomplete="off" value="${req.session.attemptedEmail || ''}" placeholder="Email address" autofocus/>
           <label for="email">Email address</label>
         </div>
     
@@ -46,15 +41,14 @@ exports.handler = async function http(req) {
     
       </form>
 
-      <a href="${url('/signup')}">Sign up</a>
+      <a href=/signup>Sign up</a>
 
     </body>
   `
-  let content = state.person ? loggedInPage : notLoggedInPage
+
+  let contents = req.session.person ? loggedInPage : notLoggedInPage
 
   return {
-    type: HTML,
-    status: OK,
-    body: layout(content, false)
+    html: layout({ contents, showNav: false })
   }
 }
