@@ -8,7 +8,7 @@
     "url": "https://github.com/architect-examples/arc-example-notes"
   },
   "dependencies": {
-    "@architect/architect": "^9.1.0",
+    "@architect/architect": "^9.2.1",
     "@architect/functions": "^4.0.0",
     "bcrypt": "^5.0.1",
     "hashids": "^2.2.8"
