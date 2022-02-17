@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@architect/architect": "^9.1.0",
-    "@architect/functions": "^4.0.0",
+    "@architect/functions": "^5.0.1",
     "bcrypt": "^5.0.1",
     "hashids": "^2.2.8"
   },
