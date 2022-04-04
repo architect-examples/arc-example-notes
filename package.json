@@ -8,10 +8,10 @@
     "url": "https://github.com/architect-examples/arc-example-notes"
   },
   "dependencies": {
-    "@architect/architect": "^9.1.0",
-    "@architect/functions": "^4.0.0",
+    "@architect/architect": "^10.2.1",
+    "@architect/functions": "^5.0.4",
     "bcrypt": "^5.0.1",
-    "hashids": "^2.2.8"
+    "hashids": "^2.2.10"
   },
   "scripts": {
     "start": "npx arc sandbox"
